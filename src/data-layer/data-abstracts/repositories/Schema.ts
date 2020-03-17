@@ -12,6 +12,7 @@ let modelSchema:Schema=new Schema({
     name: { type: String},
     type: { type: String},
     status:{type:Boolean,default:false},
+    secure_token:{type:String},
     ref:{type:String},
     address1: { type: String},
     address2: { type: String},
