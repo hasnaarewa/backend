@@ -1,8 +1,8 @@
-import { modelRepos } from "../../data-layer/data-abstracts/repositories";
 
 const path=require('path')
 const Jimp=require('jimp')
-import { v4 as uuidv4 } from 'uuid';
+
+
 export const Processing={
     uploadImage: async (image, id,data) => {
         const t = 
@@ -20,11 +20,7 @@ export const Processing={
   
         .writeAsync(t.path)
         if(iswrited){
-          data.image=id //{color1,address1,name}
-          data.ref=uuidv4()
-          let issaved=await modelRepos.create(data)
-          if(issaved) return "success"
-          throw issaved
+          return true
         }
         else{
             throw new Error('error')

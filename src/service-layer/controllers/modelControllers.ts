@@ -24,7 +24,7 @@ import {MyMiddleware} from '../../middleware/custom-middleware/myMiddleware'
 import {modelDataAgents} from '../../data-layer/data-agents/modelDataAgents'
 import { modelRepos } from '../../data-layer/data-abstracts/repositories';
 import { Processing } from '../../service-layer/imags/services';
-import { v4 as uuidv4 } from 'uuid';
+
 @JsonController('/marketplace')
 @UseBefore(MyMiddleware)
 export class modelController {
@@ -45,11 +45,7 @@ export class modelController {
     @Req() req: any,
     @Res() res: any,
   ) {
-    if(file){
-      console.log(file);
-    }
-    console.log(request);
-    // console.log(request);
+
     if(!file){
       throw new HttpError(422,"missing required parameters [image]")
     }
@@ -59,14 +55,18 @@ export class modelController {
       !request.color2){
         throw new HttpError(422,"missing required parameters")
       }
-     let issaved=await  Processing.uploadImage(file,uuidv4(),request)
      
-     if(issaved){
-       return res.json("success")
-     }
 
+       let irecordsaved=await this.modelDataAgent.saveMarketplace(request,file)
+       if(irecordsaved){
+
+       let obj={
+        message:"we have just sent confirmation email to"
+      }
+      return res.json(obj)
+       }
       
-  throw new HttpError(500,"error,try again")
+  throw new HttpError(500,"error occured please try again later code 500")
 
 }
 
