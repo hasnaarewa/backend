@@ -7,6 +7,7 @@
     "database": {
         "migrate": false
     },
+    "domain":"http://localhost:4100",
     "mongo": { "urlClient": "mongodb://localhost:27017/backend"},
     "sendgrid":{
   "key":"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 "
