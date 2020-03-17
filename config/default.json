@@ -1,0 +1,16 @@
+{
+    "express": {
+        "port": 8081,
+        "debug": 5858,
+        "host": "host-service"
+    },
+    "database": {
+        "migrate": false
+    },
+    "mongo": { "urlClient": "mongodb://localhost:27017/backend"},
+    "sendgrid":{
+  "key":"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 "
+    },
+
+    "loglevel": "info"
+}
